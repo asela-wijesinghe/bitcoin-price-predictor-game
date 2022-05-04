@@ -1,5 +1,5 @@
 import React from "react";
-import bitLogo from "../assets/bitcoin.png";
+import bitLogo from "../../assets/bitcoin.png";
 
 const Header = () => (
 	<div className="header-container animate__animated animate__fadeInDown">

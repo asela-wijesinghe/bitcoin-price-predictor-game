@@ -1,12 +1,16 @@
 import React from "react";
-import Header from "../components/header.component";
-import Signup from "../components/signup.component";
+import Header from "../components/shared/header.component";
+import Dashboard from "../containers/dashboard.container";
+import Signup from "./signup.container";
 
-const Main = ({ onRowClick, data, loading }) => (
+const Main = ({ isUserEmpty, data, loading }) => (
 	<div className="content">
 		<Header />
-		{/* <Table loading={loading} data={data} /> */}
-		<Signup />
+		{isUserEmpty ? (
+			<Signup loading={loading} />
+		) : (
+			<Dashboard data={data} loading={loading} />
+		)}
 	</div>
 );
 
