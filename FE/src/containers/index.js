@@ -1,10 +1,17 @@
-import { useLocalStorage } from "../services/useLocalStorage";
+import { useLocalStorage } from "../custom-hooks/useLocalStorage";
 import MainContainer from "./main.container";
 
 const Home = () => {
-	// const { loading, error, data } = useQuery(GET_BTC_PRICE);
+
 	const [storedValue, setValue] = useLocalStorage("user");
 	const isUserEmpty = Object.keys(storedValue).length === 0;
+
+
+	// const { loading, error, data } = useQuery(GET_BLOCK_DETAILS, {
+	// 	variables: {
+	// 		blockId,
+	// 	},
+	// });
 
 	const data = [];
 	const loading = false;

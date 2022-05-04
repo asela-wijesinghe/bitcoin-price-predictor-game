@@ -1,6 +1,6 @@
 import { Card } from "@material-ui/core";
 import React from "react";
-import { useLocalStorage } from "../services/useLocalStorage";
+import { useLocalStorage } from "../custom-hooks/useLocalStorage";
 
 const Predict = ({ loading }) => {
 	const [storedValue, setValue] = useLocalStorage("user");

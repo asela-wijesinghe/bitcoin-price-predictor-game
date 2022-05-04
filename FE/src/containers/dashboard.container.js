@@ -6,6 +6,15 @@ import { refreshPage } from "../utils/helper";
 const Dashboard = ({ loading }) => {
 	const [storedValue, setValue] = useLocalStorage("user");
 
+	//get user scores
+	// const { loading, error, data } = useQuery(GET_BLOCK_DETAILS, {
+	// 	variables: {
+	// 		blockId,
+	// 	},
+	// });
+
+	// const { loading, error, data } = useQuery(GET_BTC_PRICE);
+
 	const exitGame =()=> {
 		window.localStorage.removeItem("user")
 		refreshPage();
