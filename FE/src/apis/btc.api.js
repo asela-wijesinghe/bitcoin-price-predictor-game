@@ -1,11 +1,7 @@
-import { gql } from "@apollo/client";
 
-const GET_BTC_PRICE = gql`
-	query {
-		getPrice {
-			price
-		}
-	}
-`;
+function getBTCPrice() {
+	return fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD')
+		.then(data => data.json())
+}
 
-export { GET_BTC_PRICE };
+export { getBTCPrice };

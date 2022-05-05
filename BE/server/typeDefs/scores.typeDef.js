@@ -14,6 +14,7 @@ const scoresTypeDef = gql`
 
 	extend type Mutation {
     addNewScore(newScore: ScoreInput!): Response!
+		updateScore(scoreInput: ScoreInput!): Response!
 	}
 
 	extend type Query {

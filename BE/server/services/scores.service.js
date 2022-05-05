@@ -20,6 +20,17 @@ class ScoreService {
     await dbScore.save();
     return dbScore;
 	}
+
+
+	async updateScore(scoreInput) {
+		return ScoresSchema.findOneAndUpdate(
+      { user: scoreInput.user },
+      { score: scoreInput.score },
+      {
+        new: true
+      }
+    );
+	}
 }
 
 export default new ScoreService();

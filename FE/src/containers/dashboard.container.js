@@ -20,12 +20,10 @@ const Dashboard = () => {
 		},
 	});
 
-	// const { loading, error, data } = useQuery(GET_BTC_PRICE);
 	const exitGame = () => {
 		window.localStorage.removeItem("user");
 		refreshPage();
 	};
-
 
 	if (loadingScore) {
 		return <p>loading...</p>;
@@ -36,20 +34,36 @@ const Dashboard = () => {
 					className="card animate__animated animate__fadeInUp"
 					style={{ padding: "4%", borderRadius: 25 }}
 				>
-					<div 		style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", backgroundColor: "#ddd" , borderRadius: 15, padding: "0 2% 0 4%", alignItems: "center" }}>
-					<h2 	>{data && data.getScore.user}: <span 	style={{ color: '#f50057' }}>{data && data.getScore.score}</span></h2 >
-					{/* {data && data.getScore} */}
-					<Button
-						variant="contained"
-						style={{ borderRadius: 25, margin: "2%" }}
-						color="secondary"
-						onClick={exitGame}
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "space-between",
+							backgroundColor: "#ddd",
+							borderRadius: 15,
+							padding: "0 2% 0 4%",
+							alignItems: "center",
+						}}
 					>
-						Exit
-					</Button>
+						<h2>
+							{data && data.getScore.user}:{" "}
+							<span>{data && data.getScore.score}</span>
+						</h2>
+						<Button
+							variant="contained"
+							style={{
+								borderRadius: 25,
+								margin: "2%",
+								backgroundColor: "#e06666",
+							}}
+							color="secondary"
+							onClick={exitGame}
+						>
+							Exit
+						</Button>
 					</div>
 					<div>
-						<Predict />
+						<Predict score={data && data.getScore.score} user={data && data.getScore.user} />
 					</div>
 				</Card>
 			</div>

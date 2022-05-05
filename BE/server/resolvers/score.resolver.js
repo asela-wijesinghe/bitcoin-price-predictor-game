@@ -51,6 +51,23 @@ const ScoreResolver = {
 				);
 			}
 		},
+		updateScore: async (_, args) => {
+			try {
+				Logger.info("===============updateScore===============");
+				const { scoreInput } = args;
+				const response = await ScoreService.updateScore(scoreInput);
+			  return new Response(
+					"SUCCESS",
+					"Scores updated Successful!"
+				);
+			} catch (error) {
+				Logger.error(error);
+				throw new CustomErrorMessage(
+					error.message,
+					error.extensions && error.extensions.code
+				);
+			}
+		},
 	},
 };
 

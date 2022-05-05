@@ -27,4 +27,14 @@ const SAVE_USER = gql`
 	}
 `;
 
-export { SAVE_USER, GET_USERS, GET_SCORE };
+const UPDATE_SCORE = gql`
+	mutation updateScore($scoreInput: ScoreInput!) {
+		updateScore(scoreInput: $scoreInput) {
+			status
+      message
+		}
+	}
+`;
+
+
+export { SAVE_USER, GET_USERS, UPDATE_SCORE, GET_SCORE };
