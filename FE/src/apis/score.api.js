@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-const GET_USERS = gql`
+const GET_ALL_SCORES = gql`
 	query {
-		getScores {
+		getAllScores {
 			user
 			score
 		}
@@ -37,4 +37,4 @@ const UPDATE_SCORE = gql`
 `;
 
 
-export { SAVE_USER, GET_USERS, UPDATE_SCORE, GET_SCORE };
+export { SAVE_USER, GET_ALL_SCORES, UPDATE_SCORE, GET_SCORE };

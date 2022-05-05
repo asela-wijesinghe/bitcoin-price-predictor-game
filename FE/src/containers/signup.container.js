@@ -14,6 +14,7 @@ const Signup = () => {
 		//call service with data
 		setValue(name);
 		const newScore = { user: name, score: 0 };
+		// TODO need to validate users with unique name check with DB
 		saveUser({
 			variables: {
 				newScore,

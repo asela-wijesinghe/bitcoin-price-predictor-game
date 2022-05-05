@@ -9,7 +9,7 @@ const ScoreResolver = {
 			try {
 				Logger.info("===============getAllScores===============");
 				const response = await ScoreService.getAllScores();
-				return response.data;
+				return response;
 			} catch (error) {
 				Logger.error(error);
 				throw new CustomErrorMessage(

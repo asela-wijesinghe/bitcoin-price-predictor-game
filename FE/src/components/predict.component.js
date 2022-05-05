@@ -10,6 +10,7 @@ const Predict = ({ score, user }) => {
 	const COUNTER_DEFAULT = 10;
 	const [counter, setCounter] = useState(COUNTER_DEFAULT);
 	const [currentPrice, setCurrentPrice] = useState(0);
+	const [guessResult, setGuessResult] = useState(null);
 	const [guess, setGuess] = useState(null);
 	const [waitingExtra, setWaitingExtra] = useState(false);
 	const [updateScore, { data, loading, error }] = useMutation(UPDATE_SCORE);
@@ -34,14 +35,18 @@ const Predict = ({ score, user }) => {
 
 	const renderGuessResults = () => {
 		if (guess && !waitingExtra) {
-			return <div>Lets wait {counter} seconds to find out!</div>;
+			return <p>Lets wait {counter} seconds to find out!</p>;
 		} else if (guess && waitingExtra) {
 			return (
-				<div>
+				<p>
 					Oops! Looks like no price changes yet. Lets wait {counter} seconds
 					more to find out!
-				</div>
+				</p>
 			);
+		} else if (guessResult === "SUCCESS") {
+			return <h3>Hoorah!🔥 You get +1 Points</h3>;
+		} else if (guessResult === "WRONG") {
+			return <h3>Bad Luck!😔 You get -1 Points</h3>;
 		} else {
 			return (
 				<div style={{ display: "flex", flexDirection: "row" }}>
@@ -87,13 +92,20 @@ const Predict = ({ score, user }) => {
 				// wait 60 seconds more
 				setWaitingExtra(true);
 			} else {
-				if (guess === "UP") {
-					if (newPrice > currentPrice) newScore++;
-					if (newPrice < currentPrice) newScore--;
-				} else if (guess === "DOWN") {
-					if (newPrice > currentPrice) newScore--;
-					if (newPrice < currentPrice) newScore++;
+				if (guess === "UP" && newPrice > currentPrice) {
+					setGuessResult("SUCCESS");
+					newScore++;
+				} else if (guess === "UP" && newPrice < currentPrice) {
+					newScore--;
+					setGuessResult("WRONG");
+				} else if (guess === "DOWN" && newPrice > currentPrice) {
+					newScore--;
+					setGuessResult("WRONG");
+				} else if (guess === "DOWN" && newPrice < currentPrice) {
+					newScore++;
+					setGuessResult("SUCCESS");
 				}
+
 				setCurrentPrice(newPrice);
 				setGuess(null);
 				setWaitingExtra(false);
@@ -101,7 +113,7 @@ const Predict = ({ score, user }) => {
 					variables: {
 						scoreInput: {
 							score: newScore,
-							user: user
+							user: user,
 						},
 					},
 				});
