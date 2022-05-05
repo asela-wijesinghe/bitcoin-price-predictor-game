@@ -2,27 +2,12 @@ import { useLocalStorage } from "../custom-hooks/useLocalStorage";
 import MainContainer from "./main.container";
 
 const Home = () => {
-
 	const [storedValue, setValue] = useLocalStorage("user");
-	const isUserEmpty = Object.keys(storedValue).length === 0;
-
-
-	// const { loading, error, data } = useQuery(GET_BLOCK_DETAILS, {
-	// 	variables: {
-	// 		blockId,
-	// 	},
-	// });
-
-	const data = [];
-	const loading = false;
+	const isUserEmpty = storedValue && Object.keys(storedValue).length === 0;
 
 	return (
 		<div className="container">
-			<MainContainer
-				loading={loading}
-				data={data && data.getAllBlocks}
-				isUserEmpty={isUserEmpty}
-			/>
+			<MainContainer isUserEmpty={isUserEmpty} />
 		</div>
 	);
 };

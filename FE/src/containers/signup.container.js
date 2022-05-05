@@ -1,21 +1,33 @@
+import { useMutation } from "@apollo/client";
 import { Button, Card, TextField } from "@material-ui/core";
 import React, { useState } from "react";
+import { SAVE_USER } from "../apis/score.api";
 import { useLocalStorage } from "../custom-hooks/useLocalStorage";
 import { refreshPage } from "../utils/helper";
 
-const Signup = ({ loading }) => {
-	const [name, setName] = useState(null);
+const Signup = () => {
+	const [name, setName] = useState("");
 	const [storedValue, setValue] = useLocalStorage("user");
-	// const { loading, error, data } = useQuery(GET_BTC_PRICE);
+	const [saveUser, { data, loading, error }] = useMutation(SAVE_USER);
 
 	const createNewSession = () => {
 		//call service with data
 		setValue(name);
+		const newScore = { user: name, score: 0 };
+		saveUser({
+			variables: {
+				newScore,
+			},
+		});
 		refreshPage();
 	};
 
+	if (error) {
+		return <p>Something Went Wrong!</p>;
+	}
+
 	if (loading) {
-		return <p>loading...</p>;
+		return <p>Starting...</p>;
 	} else {
 		return (
 			<form onSubmit={createNewSession} className="card-container">

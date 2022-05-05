@@ -1,6 +1,7 @@
 import ScoreService from "server/services/scores.service.js";
 import CustomErrorMessage from "shared/util/customErrorMessage.js";
 import Logger from "shared/util/logger.js";
+import Response from "shared/util/response.js";
 
 const ScoreResolver = {
 	Query: {
@@ -22,7 +23,7 @@ const ScoreResolver = {
 				Logger.info("===============getScore===============");
 				const { user } = args;
 				const response = await ScoreService.getScore(user);
-				return response.data;
+				return response;
 			} catch (error) {
 				Logger.error(error);
 				throw new CustomErrorMessage(
@@ -36,9 +37,12 @@ const ScoreResolver = {
 		addNewScore: async (_, args) => {
 			try {
 				Logger.info("===============addNewScore===============");
-				const { newUser } = args;
-				const response = await ScoreService.registerUser(newUser);
-				return response.data;
+				const { newScore } = args;
+				const response = await ScoreService.registerUser(newScore);
+			  return new Response(
+					"SUCCESS",
+					"User creating Successful!"
+				);
 			} catch (error) {
 				Logger.error(error);
 				throw new CustomErrorMessage(

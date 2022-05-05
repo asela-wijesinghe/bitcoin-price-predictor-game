@@ -8,6 +8,4 @@ const GET_BTC_PRICE = gql`
 	}
 `;
 
-
 export { GET_BTC_PRICE };
-

@@ -13,10 +13,10 @@ class ScoreService {
 		})
 	}
 
-	async registerUser(newUser) {
+	async registerUser(newScore) {
 		let dbScore = new ScoresSchema();
-    dbScore.name = newUser.user;
-    dbScore.wallet = newUser.score;
+    dbScore.user = newScore.user;
+    dbScore.score = newScore.score;
     await dbScore.save();
     return dbScore;
 	}
