@@ -4,14 +4,13 @@ Final Product Preview
 
 ![Bitcoin-Game](https://i.imgur.com/anaRZjr.png)
 
-##### Asela-Wijesinghe (Tech Lead - Redem GmbH)
+##### by Asela-Wijesinghe (Tech Lead - Redem GmbH)
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
 - [Bitcoin Price Predictor - Game:v:](#bitcoin-price-predictor-gamev)
-  - [Asela-Wijesinghe (Tech Lead - Redem GmbH)](#asela-wijesinghe-tech-lead-redem-gmbh)
   - [How to Play](#how-to-play)
   - [How to run the App](#how-to-run-the-app)
     - [Backend](#backend)
