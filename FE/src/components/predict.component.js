@@ -59,7 +59,7 @@ const Predict = ({ score, user }) => {
 							backgroundColor: "#ffd966",
 							minWidth: 100,
 						}}
-						onClick={() => setGuess("UP")}
+						onClick={() => setGuess("DOWN")}
 					>
 						Down
 					</Button>
@@ -72,7 +72,7 @@ const Predict = ({ score, user }) => {
 							minWidth: 100,
 						}}
 						variant="outlined"
-						onClick={() => setGuess("DOWN")}
+						onClick={() => setGuess("UP")}
 					>
 						Up
 					</Button>
@@ -93,9 +93,11 @@ const Predict = ({ score, user }) => {
 				setWaitingExtra(true);
 			} else {
 				if (guess === "UP" && newPrice > currentPrice) {
+					console.log("UP: newPrice > currentPrice", newPrice, currentPrice);
 					setGuessResult("SUCCESS");
 					newScore++;
 				} else if (guess === "UP" && newPrice < currentPrice) {
+					console.log("UP: newPrice < currentPrice", newPrice, currentPrice);
 					newScore--;
 					setGuessResult("WRONG");
 				} else if (guess === "DOWN" && newPrice > currentPrice) {
