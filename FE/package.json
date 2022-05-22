@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.1.10",
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
+    "coinbase-pro-node": "^4.0.0",
     "enzyme": "^3.11.0",
     "graphql": "^15.5.1",
     "material-table": "^1.69.3",

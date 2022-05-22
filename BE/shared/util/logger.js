@@ -1,4 +1,4 @@
-// Introduce loggers later
+
 class Logger {
 	static info(...args) {
 		console.log(args);
