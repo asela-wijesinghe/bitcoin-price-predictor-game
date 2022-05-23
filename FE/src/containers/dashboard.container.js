@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { Button, Card, Modal } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GET_ALL_SCORES, GET_SCORE } from "../apis/score.api";
 import Predict from "../components/predict.component.js";
 import Table from "../components/table.component";
@@ -10,24 +10,31 @@ import { refreshPage } from "../utils/helper";
 const Dashboard = () => {
 	const [storedValue] = useLocalStorage("user");
 	const [showTable, setShowTable] = useState(false);
+	const [scoreChanged, setScoreChanged] = useState(true);
 
 	//get user scores
-	const {
-		loading: loadingScore,
-		error,
-		data,
-	} = useQuery(GET_SCORE, {
-		variables: {
-			user: storedValue,
-		},
-	});
+	const [getNewScores, { loading: loadingScore, error, data }] = useLazyQuery(
+		GET_SCORE,
+		{
+			variables: {
+				user: storedValue,
+			},
+		}
+	);
+
+	useEffect(() => {
+		if (scoreChanged) {
+			getNewScores();
+			getAllScores();
+			setScoreChanged(false);
+		}
+	}, [scoreChanged]);
 
 	//get user scores
-	const {
-		loading: loadingTable,
-		error: tableError,
-		data: tableData,
-	} = useQuery(GET_ALL_SCORES);
+	const [
+		getAllScores,
+		{ loading: loadingTable, error: tableError, data: tableData },
+	] = useLazyQuery(GET_ALL_SCORES);
 
 	const exitGame = () => {
 		window.localStorage.removeItem("user");
@@ -93,6 +100,7 @@ const Dashboard = () => {
 					</div>
 					<div>
 						<Predict
+							setScoreChanged={setScoreChanged}
 							score={data && data.getScore.score}
 							user={data && data.getScore.user}
 						/>
