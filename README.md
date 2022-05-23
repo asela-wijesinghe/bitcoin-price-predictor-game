@@ -4,7 +4,7 @@ Final Product Preview
 
 ![Bitcoin-Game](https://i.imgur.com/anaRZjr.png)
 
-##### by Asela-Wijesinghe (Tech Lead - Redem GmbH)
+by Asela-Wijesinghe (Full Stack Developer)
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
@@ -16,6 +16,8 @@ Final Product Preview
     - [Backend](#backend)
     - [Frontend](#frontend)
   - [Deployment](#deployment)
+    - [Deployment Pipeline](#deployment-pipeline)
+    - [Scalability](#scalability)
 
 <!-- /code_chunk_output -->
 
@@ -35,7 +37,7 @@ The below technologies have used to create the final product. But you can find h
 
 `Javascript / React / GraphQL / Mongoose / Apollo-Client / Apollo-Server / AWS`
 
-##### Backend
+###### Backend
 
 1. Clone the project to the local machine
 2. Go to the BE folder and open a terminal
@@ -43,7 +45,7 @@ The below technologies have used to create the final product. But you can find h
 4. You need a `.env` file with sensitive info related to DB etc and you can contact me to get the predefined file. Copy that file into `<repo>/BE` folder.
 5. Do a `yarn start`
 
-##### Frontend
+###### Frontend
 
 1. Clone the project to the local machine
 2. Go to the FE folder and open a terminal
@@ -54,6 +56,16 @@ The below technologies have used to create the final product. But you can find h
 
 Suggested deployment architecture would be something like this to start with. Monolythic and simple, but can differ in future based on the real application situation.
 
-I would put the FE into an S3 bucket and change the `URI` in the `FE/index.js` into the BE server IP/URL.
+###### Deployment Pipeline
 
-For the BE I wouldn't focus on horizontal scaling in the begining, I would rather focus on a good load balancer and reliable EC2's to give me higher vertical scalability for the BE if there are more and more users for the game.
+For the moment the pipeline is quite simple and it uses `CodeDeploy` and uses the below described structure
+
+![Code-Deploy-Results](https://i.imgur.com/hi8gc5c.png)
+
+Initially the code is pushed to the s3 bucket upon running the `yarn deploy` script, which automatically start the deployment trigger and provides below results.
+
+![Code-Deploy-Results](https://i.imgur.com/PNoSLQr.png)
+
+###### Scalability
+
+For scaling purposes the BE I wouldn't focus on horizontal scaling in the begining, I would rather focus on a good load balancer and reliable and auto scalable performant EC2 to give me higher vertical scalability for the BE if there are more and more users for the game.

@@ -26,6 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "zip -r ./fe-app.zip * && aws s3 sync ./fe-app.zip s3://code-deploy-be",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
