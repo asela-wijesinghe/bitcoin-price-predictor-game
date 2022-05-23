@@ -21,7 +21,7 @@ const server = new ApolloServer({
 		origin: (origin, callback) => {
 			const whitelist = [
 				"http://localhost:3000", //dev env
-				"http://15.206.171.139" //prod env
+				"http://172.31.36.210:3000" //prod env
 			];
 
 			if (!origin || whitelist.indexOf(origin) !== -1) {
