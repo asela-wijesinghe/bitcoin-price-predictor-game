@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { UPDATE_SCORE } from "../apis/score.api";
 
 const Predict = ({ score, user, setScoreChanged }) => {
-	const COUNTER_DEFAULT = 10;
+	const COUNTER_DEFAULT = 60;
 	const [counter, setCounter] = useState(COUNTER_DEFAULT);
 	const [currentPrice, setCurrentPrice] = useState(0);
 	const [guessResult, setGuessResult] = useState(null);
