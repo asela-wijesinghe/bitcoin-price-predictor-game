@@ -52,6 +52,12 @@ The below technologies have used to create the final product. But you can find h
 3. Do a `yarn install` (Or your preffered npx/npm command)
 4. Do a `yarn start`
 
+#### Testing
+
+Click `yarn test` to see test results in the `/FE` folder. Tests are only covering UI Render logic in predict component at the moment. Need to extend the test suite further
+
+![Test-results](https://i.imgur.com/lgeae0a.png)
+
 #### Deployment
 
 Suggested deployment architecture would be something like this to start with. Monolythic and simple, but can differ in future based on the real application situation.
