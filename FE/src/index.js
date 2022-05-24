@@ -5,9 +5,23 @@ import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
+
+const defaultOptions = {
+	watchQuery: {
+		fetchPolicy: 'no-cache',
+		errorPolicy: 'ignore',
+	},
+	query: {
+		fetchPolicy: 'no-cache',
+		errorPolicy: 'all',
+	},
+};
+
+
 const client = new ApolloClient({
 	cache: new InMemoryCache(),
-	uri: "http://localhost:4000/graphql",
+	defaultOptions: defaultOptions,
+	uri: "http://13.233.238.12:4000",
 });
 
 ReactDOM.render(

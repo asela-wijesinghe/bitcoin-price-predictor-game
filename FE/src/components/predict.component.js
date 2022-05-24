@@ -4,7 +4,7 @@ import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { UPDATE_SCORE } from "../apis/score.api";
 
-const Predict = ({ score, user }) => {
+const Predict = ({ score, user, setScoreChanged }) => {
 	const COUNTER_DEFAULT = 60;
 	const [counter, setCounter] = useState(COUNTER_DEFAULT);
 	const [currentPrice, setCurrentPrice] = useState(0);
@@ -138,7 +138,8 @@ const Predict = ({ score, user }) => {
 				setOldPrice(0);
 				setGuess(null);
 				setWaitingExtra(false);
-				updateScore({
+
+				await updateScore({
 					variables: {
 						scoreInput: {
 							score: newScore,
@@ -146,6 +147,7 @@ const Predict = ({ score, user }) => {
 						},
 					},
 				});
+				setScoreChanged(true);
 			}
 			setCounter(COUNTER_DEFAULT);
 		} catch (error) {
